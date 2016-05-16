@@ -1,22 +1,21 @@
-graph = {'A': ['B', 'C'],
-         'B': ['C', 'D'],
-         'C': ['D'],
-         'D': ['C'],
-         'E': ['F'],
-         'F': ['C']}
+from BFS import *
+from DFS import *
+from Bellman_Ford import *
+from Dijkstra import *
+from Topological import *
 
 
-def find_path(graph, start, end, path=[]):
-        path = path + [start]
-        if start == end:
-            return path
-        if not graph.has_key(start):
-            return None
-        for node in graph[start]:
-            if node not in path:
-                newpath = find_path(graph, node, end, path)
-                if newpath: return newpath
-        return None
+# Graph is a dict with vertex numbers for keys and edges with weights for values
+graph = {1: [(2, 1), (3, 1)],
+         2: [(3, 1), (4, 1)],
+         3: [(4, 1)],
+         4: [(3, 1)],
+         5: [(6, 1)],
+         6: [(3, 1)]}
 
 
-print find_path(graph, 'A', 'D')
+print "bfs:"
+print bfs(graph, 1)
+
+print "dfs:"
+print dfs(graph, 1)
