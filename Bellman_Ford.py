@@ -1,4 +1,4 @@
-# The Bellman-Ford algorithm
+# Bellman-Ford algorithm
 def bellman_ford(graph, start):
 
     # distances and parents init

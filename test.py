@@ -5,11 +5,11 @@ from Dijkstra import *
 from Topological import *
 
 
-# Graph is a dict with vertex numbers for keys and edges with weights for values
+# Graph is a dict with vertexes for keys and  dict of edges with weights for values
 graph = {1: {2: 1, 3: 1},
          2: {3: 1, 4: 1},
          3: {4: 1},
-         4: {3: 1},
+         4: {},
          5: {6: 1},
          6: {3: 1}}
 
@@ -22,3 +22,6 @@ print dfs(graph, 1)
 
 print "bellman-ford:"
 print bellman_ford(graph, 1)
+
+print "dijkstra:"
+print dijkstra(graph, 1)
