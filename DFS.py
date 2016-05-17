@@ -1,23 +1,26 @@
-# Depth-first search
+# Depth-first search algorithm
 def dfs(graph, start):
 
     # distances and parents init
-    distances = ['inf'] * len(graph)
-    parents = ['nil'] * len(graph)
+    distance = {}
+    parent = {}
+    for node in graph:
+        distance[node] = 'inf'
+        parent[node] = 'nil'
 
     stack = []
 
-    distances[start - 1] = 0
+    distance[start] = 0
 
     stack.append(start)
 
     while not stack == []:
         vertex = stack.pop()
         for neighbour in graph[vertex]:
-            dist = distances[vertex - 1] + neighbour[1]
-            if distances[neighbour[0] - 1] == 'inf' or distances[neighbour[0] - 1] > dist:
-                distances[neighbour[0] - 1] = dist
-                parents[neighbour[0] - 1] = vertex
-                stack.append(neighbour[0])
+            dist = distance[vertex] + graph[vertex][neighbour]
+            if distance[neighbour] == 'inf' or distance[neighbour] > dist:
+                distance[neighbour] = dist
+                parent[neighbour] = vertex
+                stack.append(neighbour)
 
-    return distances, parents
+    return distance, parent
