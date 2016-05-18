@@ -25,3 +25,6 @@ print bellman_ford(graph, 1)
 
 print "dijkstra:"
 print dijkstra(graph, 1)
+
+print "topological:"
+print topological(graph, 1)
