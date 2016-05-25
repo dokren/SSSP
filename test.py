@@ -3,6 +3,8 @@ from DFS import *
 from Bellman_Ford import *
 from Dijkstra import *
 from Topological import *
+from graph_gen import *
+import time
 
 
 # Graph is a dict with vertexes for keys and  dict of edges with weights for values
@@ -14,17 +16,24 @@ graph = {1: {2: 1, 3: 1},
          6: {3: 1}}
 
 
+graph = gen_random_graph(500, 0.5)
+
 print "bfs:"
-print bfs(graph, 1)
+start_time = time.time()
+bfs(graph, 1)
+print("--- %s seconds ---" % (time.time() - start_time))
 
 print "dfs:"
-print dfs(graph, 1)
-
-print "bellman-ford:"
-print bellman_ford(graph, 1)
+start_time = time.time()
+dfs(graph, 1)
+print("--- %s seconds ---" % (time.time() - start_time))
 
 print "dijkstra:"
-print dijkstra(graph, 1)
+start_time = time.time()
+dijkstra(graph, 1)
+print("--- %s seconds ---" % (time.time() - start_time))
 
-print "topological:"
-print topological(graph, 1)
+print "bellman-ford:"
+start_time = time.time()
+bellman_ford(graph, 1)
+print("--- %s seconds ---" % (time.time() - start_time))
