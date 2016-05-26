@@ -16,7 +16,7 @@ graph = {1: {2: 1, 3: 1},
          6: {3: 1}}
 
 
-graph = gen_random_graph(5000, 0.1)
+graph = gen_random_graph(1000, 0.8)
 
 print "bfs:"
 start_time = time.time()
