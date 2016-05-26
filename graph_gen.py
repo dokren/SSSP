@@ -17,7 +17,7 @@ def gen_random_graph(n, prob):
         t = dict()
         for j in range(n):
             if random.random() < prob:
-                t[j] = random.randrange(1, 20)
+                t[j] = random.randrange(1, 200)
         d[i] = t
     return d
 

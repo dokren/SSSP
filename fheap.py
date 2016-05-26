@@ -1,4 +1,4 @@
-'''
+"""
 File: fibonacci_heap_mod.py
 Author: Keith Schwarz (htiek@cs.stanford.edu)
 Ported to Python by Dan Stromberg (strombrg@gmail.com)
@@ -49,14 +49,14 @@ this process.  This can be shown to run in O(1) amortized time using yet
 another clever potential function.  Finally, given this function, we can
 implement delete by decreasing a key to -infinity, then calling dequeue_min to
 extract it.
-'''
+"""
 
 import math
 import collections
 
 
 def merge_lists(one, two):
-    '''
+    """
     Utility function which, given two pointers into disjoint circularly-
     linked lists, merges the two lists together into one circularly-linked
     list in O(1) time.  Because the lists may be empty, the return value
@@ -71,7 +71,7 @@ def merge_lists(one, two):
     @param one A reference to one of the two deques.
     @param two A reference to the other of the two deques.
     @return A reference to the smallest element of the resulting list.
-    '''
+    """
     # There are four cases depending on whether the lists are None or not.
     # We consider each separately.
     if one is None and two is None:
@@ -132,7 +132,7 @@ def merge_lists(one, two):
 
 
 def merge(one, two):
-    '''
+    """
     Given two Fibonacci heaps, returns a new Fibonacci heap that contains
     all of the elements of the two heaps.  Each of the input heaps is
     destructively modified by having all its elements removed.  You can
@@ -143,7 +143,7 @@ def merge(one, two):
     @param two The second Fibonacci heap to merge.
     @return A new Fibonacci_heap containing all of the elements of both
             heaps.
-    '''
+    """
     # Create a new Fibonacci_heap to hold the result.
     result = Fibonacci_heap()
 
@@ -170,7 +170,7 @@ def merge(one, two):
 # node in the tree.  In actuality, this handle is the node itself.
 class Entry(object):
     # pylint: disable=too-many-instance-attributes
-    '''Hold an entry in the heap'''
+    """Hold an entry in the heap"""
 
     __slots__ = ['m_degree', 'm_is_marked', 'm_parent', 'm_child', 'm_next', 'm_prev', 'm_elem', 'm_priority']
 
@@ -252,48 +252,48 @@ class Entry(object):
 #            return False
 
     def get_value(self):
-        '''
+        """
         Returns the element represented by this heap entry.
 
         @return The element represented by this heap entry.
-        '''
+        """
         return self.m_elem
 
     def set_value(self, value):
-        '''
+        """
         Sets the element associated with this heap entry.
 
         @param value The element to associate with this heap entry.
-        '''
+        """
         self.m_elem = value
 
     def get_priority(self):
-        '''
+        """
         Returns the priority of this element.
 
         @return The priority of this element.
-        '''
+        """
         return self.m_priority
 
     def _entry(self, elem, priority):
-        '''
+        """
         Constructs a new Entry that holds the given element with the indicated
         priority.
 
         @param elem The element stored in this node.
         @param priority The priority of this element.
-        '''
+        """
         self.m_next = self.m_prev = self
         self.m_elem = elem
         self.m_priority = priority
 
 
 class Fibonacci_heap(object):
-    '''
+    """
     A class representing a Fibonacci heap.
 
     @author Keith Schwarz (htiek@cs.stanford.edu)
-    '''
+    """
     def __init__(self):
         # Pointer to the minimum element in the heap.
         self.m_min = None
@@ -302,7 +302,7 @@ class Fibonacci_heap(object):
         self.m_size = 0
 
     def enqueue(self, value, priority):
-        '''
+        """
         Inserts the specified element into the Fibonacci heap with the specified
         priority.  Its priority must be a valid double, so you cannot set the
         priority to NaN.
@@ -310,7 +310,7 @@ class Fibonacci_heap(object):
         @param value The value to insert.
         @param priority Its priority, which must be valid.
         @return An Entry representing that element in the tree.
-        '''
+        """
         self._check_priority(priority)
 
         # Create the entry object, which is a circularly-linked list of length
@@ -327,24 +327,24 @@ class Fibonacci_heap(object):
         return result
 
     def min(self):
-        '''
+        """
         Returns an Entry object corresponding to the minimum element of the
         Fibonacci heap, raising an IndexError if the heap is
         empty.
 
         @return The smallest element of the heap.
         @raises IndexError If the heap is empty.
-        '''
+        """
         if not bool(self):
             raise IndexError("Heap is empty.")
         return self.m_min
 
     def __bool__(self):
-        '''
+        """
         Returns whether the heap is nonempty.
 
         @return Whether the heap is nonempty.
-        '''
+        """
         if self.m_min is None:
             return False
         else:
@@ -353,22 +353,22 @@ class Fibonacci_heap(object):
     __nonzero__ = __bool__
 
     def __len__(self):
-        '''
+        """
         Returns the number of elements in the heap.
 
         @return The number of elements in the heap.
-        '''
+        """
         return self.m_size
 
     def dequeue_min(self):
         # pylint: disable=too-many-branches
-        '''
+        """
         Dequeues and returns the minimum element of the Fibonacci heap.  If the
         heap is empty, this throws an IndexError.
 
         @return The smallest element of the Fibonacci heap.
         @raises IndexError if the heap is empty.
-        '''
+        """
 
         # Check for whether we're empty.
         if not bool(self):
@@ -440,7 +440,7 @@ class Fibonacci_heap(object):
         # list is empty or while the current element isn't the first element
         # of that list.
 
-        #for (Entry<T> curr = self.m_min; toVisit.isEmpty() || toVisit.get(0) != curr; curr = curr.m_next)
+        # for (Entry<T> curr = self.m_min; toVisit.isEmpty() || toVisit.get(0) != curr; curr = curr.m_next)
         curr = self.m_min
         while not to_visit or to_visit[0] is not curr:
             to_visit.append(curr)
@@ -468,12 +468,12 @@ class Fibonacci_heap(object):
 
                 # Determine which of the two trees has the smaller root, storing
                 # the two trees accordingly.
-                #minimum = (other.m_priority < curr.m_priority)? other : curr
+                # minimum = (other.m_priority < curr.m_priority)? other : curr
                 if other.m_priority < curr.m_priority:
                     minimum = other
                 else:
                     minimum = curr
-                #maximum = (other.m_priority < curr.m_priority)? curr  : other
+                # maximum = (other.m_priority < curr.m_priority)? curr  : other
                 if other.m_priority < curr.m_priority:
                     maximum = curr
                 else:
@@ -510,7 +510,7 @@ class Fibonacci_heap(object):
         return min_elem
 
     def decrease_key(self, entry, new_priority):
-        '''
+        """
         Decreases the key of the specified element to the new priority.  If the
         new priority is greater than the old priority, this function raises an
         ValueError.  The new priority must be a finite double,
@@ -524,7 +524,7 @@ class Fibonacci_heap(object):
         @param new_priority The new priority to associate with this entry.
         @raises ValueError If the new priority exceeds the old
                 priority, or if the argument is not a finite double.
-        '''
+        """
         self._check_priority(new_priority)
         if new_priority > entry.m_priority:
             raise ValueError("New priority exceeds old.")
@@ -533,14 +533,14 @@ class Fibonacci_heap(object):
         self.decrease_key_unchecked(entry, new_priority)
 
     def delete(self, entry):
-        '''
+        """
         Deletes this Entry from the Fibonacci heap that contains it.
 
         It is assumed that the entry belongs in this heap.  For efficiency
         reasons, this is not checked at runtime.
 
         @param entry The entry to delete.
-        '''
+        """
         #Use decreaseKey to drop the entry's key to -infinity.  This will
         #guarantee that the node is cut and set to the global minimum.
         self.decrease_key_unchecked(entry, float("-inf"))
@@ -550,24 +550,24 @@ class Fibonacci_heap(object):
 
     @staticmethod
     def _check_priority(priority):
-        '''
+        """
         Utility function which, given a user-specified priority, checks whether
         it's a valid double and throws an ValueError otherwise.
 
         @param priority The user's specified priority.
         @raises ValueError if it is not valid.
-        '''
+        """
         if math.isnan(priority) or math.isinf(priority):
             raise ValueError("Priority {} is invalid.".format(priority))
 
     def decrease_key_unchecked(self, entry, priority):
-        '''
+        """
         Decreases the key of a node in the tree without doing any checking to ensure
         that the new priority is valid.
 
         @param entry The node whose key should be decreased.
         @param priority The node's new priority.
-        '''
+        """
 
         # First, change the node's priority.
         entry.m_priority = priority
@@ -586,12 +586,12 @@ class Fibonacci_heap(object):
             self.m_min = entry
 
     def cut_node(self, entry):
-        '''
+        """
         Cuts a node from its parent.  If the parent was already marked, recursively
         cuts that node from its parent as well.
 
         @param entry The node to cut from its parent.
-        '''
+        """
         # Begin by clearing the node's mark, since we just cut it.
         entry.m_is_marked = False
 

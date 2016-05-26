@@ -28,6 +28,11 @@ start_time = time.time()
 dfs(graph, 1)
 print("--- %s seconds ---" % (time.time() - start_time))
 
+# print "bellman_ford:"
+# start_time = time.time()
+# bellman_ford(graph, 1)
+# print("--- %s seconds ---" % (time.time() - start_time))
+
 print "dijkstra_list:"
 start_time = time.time()
 dijkstra_list(graph, 1)

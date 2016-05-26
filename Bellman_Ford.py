@@ -18,10 +18,4 @@ def bellman_ford(graph, start):
                         distance[n] = distance[v] + graph[v][n]
                         parent[n] = v
 
-    # check for negative-weight cycles
-    for v in graph:
-        if not distance[v] == 'inf':
-            for n in graph[v]:
-                assert distance[n] <= distance[v] + graph[v][n]
-
     return distance, parent

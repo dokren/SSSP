@@ -23,8 +23,6 @@ def dijkstra_list(graph, start):
         alist.remove(minel)
         tup = minel
         vertex = tup[1]
-        if distance[vertex] > tup[0]:
-            continue
         for neighbour in graph[vertex]:
             dist = distance[vertex] + graph[vertex][neighbour]
             if distance[neighbour] == 'inf' or dist < distance[neighbour]:
