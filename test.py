@@ -16,7 +16,7 @@ graph = {1: {2: 1, 3: 1},
          6: {3: 1}}
 
 
-graph = gen_random_graph(500, 0.5)
+graph = gen_random_graph(5000, 0.1)
 
 print "bfs:"
 start_time = time.time()
@@ -28,12 +28,17 @@ start_time = time.time()
 dfs(graph, 1)
 print("--- %s seconds ---" % (time.time() - start_time))
 
-print "dijkstra:"
+print "dijkstra_list:"
 start_time = time.time()
-dijkstra(graph, 1)
+dijkstra_list(graph, 1)
 print("--- %s seconds ---" % (time.time() - start_time))
 
-print "bellman-ford:"
+print "dijkstra_bheap:"
 start_time = time.time()
-bellman_ford(graph, 1)
+dijkstra_bh(graph, 1)
+print("--- %s seconds ---" % (time.time() - start_time))
+
+print "dijkstra_fheap:"
+start_time = time.time()
+dijkstra_fh(graph, 1)
 print("--- %s seconds ---" % (time.time() - start_time))
