@@ -13,7 +13,7 @@ def topological(graph, start):
 
     def dfs(root):
         state[root] = GRAY
-        for k in graph.get(root, ()):
+        for k in graph[root]:
             sk = state.get(k, None)
             if sk == GRAY:
                 raise ValueError("cycle")
@@ -38,6 +38,8 @@ def topological(graph, start):
     distance[start] = 0
 
     for vertex in top_order[top_order.index(start):]:
+        if distance[vertex] == 'inf':
+            continue
         for neighbour in graph[vertex]:
             dist = distance[vertex] + graph[vertex][neighbour]
             if distance[neighbour] == 'inf' or dist < distance[neighbour]:
