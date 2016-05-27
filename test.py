@@ -22,6 +22,13 @@ def main():
     res5 = dijkstra_bh(test_graph, 1)
     res6 = dijkstra_fh(test_graph, 1)
 
+    print res1
+    print res2
+    print res3
+    print res4
+    print res5
+    print res6
+
     assert res1[0] == res2[0] and res2[0] == res3[0] and res3[0] == res4[0] and res4[0] == res5[0] and res5[0] == res6[0]
 
     print "Simple test passed!"

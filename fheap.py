@@ -1,5 +1,4 @@
 """
-File: fibonacci_heap_mod.py
 Author: Keith Schwarz (htiek@cs.stanford.edu)
 Ported to Python by Dan Stromberg (strombrg@gmail.com)
 
@@ -224,32 +223,6 @@ class Entry(object):
             return 1
         else:
             return 0
-
-#    def __cmp__(self, other):
-#        '''
-#        Comparison method, 2.x style.
-#        We compare object identity, rather than priority and value
-#        '''
-#        if id(self) == id(other):
-#            return 0
-#        elif id(self) < id(other):
-#            return -1
-#        else:
-#            return 1
-#
-#    def __lt__(self, other):
-#        '''Comparison method, 3.x style'''
-#        if self.__cmp__(other) == -1:
-#            return True
-#        else:
-#            return False
-#
-#    def __eq__(self, other):
-#        '''Comparison method, 3.x style'''
-#        if self.__cmp__(other) == 0:
-#            return True
-#        else:
-#            return False
 
     def get_value(self):
         """

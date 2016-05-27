@@ -43,6 +43,7 @@ def dijkstra_bh(graph, start):
         parent[node] = 'nil'
 
     hp = []
+
     heapmap = dict()
 
     distance[start] = 0
