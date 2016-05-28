@@ -17,10 +17,12 @@ def main():
 
     res1 = bfs(test_graph, 1)
     res2 = dfs(test_graph, 1)
-    res3 = bellman_ford(test_graph, 1)
-    res4 = dijkstra_list(test_graph, 1)
-    res5 = dijkstra_bh(test_graph, 1)
-    res6 = dijkstra_fh(test_graph, 1)
+    res3 = bellman_ford1(test_graph, 1)
+    res4 = bellman_ford2(test_graph, 1)
+    res5 = bellman_ford3(test_graph, 1)
+    res6 = dijkstra_list(test_graph, 1)
+    res7 = dijkstra_bh(test_graph, 1)
+    res8 = dijkstra_fh(test_graph, 1)
 
     print res1
     print res2
@@ -28,8 +30,10 @@ def main():
     print res4
     print res5
     print res6
+    print res7
+    print res8
 
-    assert res1[0] == res2[0] and res2[0] == res3[0] and res3[0] == res4[0] and res4[0] == res5[0] and res5[0] == res6[0]
+    assert res1[0] == res2[0] and res2[0] == res3[0] and res3[0] == res4[0] and res4[0] == res5[0] and res5[0] == res6[0] and res6[0] == res7[0] and res7[0] == res8[0]
 
     print "Simple test passed!"
 
@@ -40,12 +44,14 @@ def main():
 
         res1 = bfs(graph, start)
         res2 = dfs(graph, start)
-        res3 = bellman_ford(graph, start)
-        res4 = dijkstra_list(graph, start)
-        res5 = dijkstra_bh(graph, start)
-        res6 = dijkstra_fh(graph, start)
+        res3 = bellman_ford1(graph, start)
+        res4 = bellman_ford2(graph, start)
+        res5 = bellman_ford3(graph, start)
+        res6 = dijkstra_list(graph, start)
+        res7 = dijkstra_bh(graph, start)
+        res8 = dijkstra_fh(graph, start)
 
-        assert res1[0] == res2[0] and res2[0] == res3[0] and res3[0] == res4[0] and res4[0] == res5[0] and res5[0] == res6[0]
+        assert res1[0] == res2[0] and res2[0] == res3[0] and res3[0] == res4[0] and res4[0] == res5[0] and res5[0] == res6[0] and res6[0] == res7[0] and res7[0] == res8[0]
 
     print "Large random graph test passed!"
 

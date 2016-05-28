@@ -7,7 +7,6 @@ def visualize_scatter():
     df = pd.read_csv('test_results/random_g.txt', sep=' ', names=list('nabcde'), index_col=0, header=None)
     ns = df.index.values
     rep = len(ns[ns == 100])
-    print rep
 
     fig = plt.figure(figsize=(15, 10))
 
@@ -68,7 +67,6 @@ def visualize_box():
     for a, m, c in zip(algs, markers, colors):
         plt.errorbar(davg.index.values, davg[a], yerr=derr[a].tolist(), color=c, marker=m, label=a)
         plt.xlim(0, 1100)
-        print(davg[a])
     plt.legend(loc='upper left', shadow=True)
 
 
@@ -80,10 +78,7 @@ def visualize_box():
         pos = range(start[a], 541, 100)
         wds = [15] * 5
         fp = {'color': c}
-        print bp
-        print pos
-        print wds
-        print fp
+
         plt.boxplot(bp, positions=pos, whis='range', manage_xticks=False, widths=wds, boxprops=fp, medianprops=fp, whiskerprops=fp, capprops=fp)
         plt.xlim(0, 1100)
         plt.xticks(np.arange(100,1001,100))
