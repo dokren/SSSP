@@ -59,9 +59,14 @@ def gen_da_graph(n, prob, w_range):
 
 def gen_tree_graph(n, w_range):
     d = dict()
-    for i in range(n):
-        t = dict()
-        for j in range(n):
-            t[j] = 1
-        d[i] = t
+    for i in range(n - 1):
+        child = random.randrange(i + 1, n)
+        if child in d:
+            d[child][i] = random.randrange(1, w_range)
+        else:
+            d[child] = dict({i: random.randrange(1, w_range)})
+        if i in d:
+            d[i][child] = random.randrange(1, w_range)
+        else:
+            d[i] = dict({child: random.randrange(1, w_range)})
     return d

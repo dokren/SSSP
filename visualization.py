@@ -4,15 +4,17 @@ import matplotlib.pyplot as plt
 
 
 def visualize_scatter():
-    df = pd.read_csv('test_results/random_g.txt', sep=' ', names=list('nabcde'), index_col=0, header=None)
+    df = pd.read_csv('test_results/bf1_bf2_bf3_random_g_100,50,351.txt', sep=' ', names=list(['n', 'bf1', 'bf2', 'bf3', 'blank']), index_col=0, header=None)
     ns = df.index.values
-    rep = len(ns[ns == 100])
+    rep = 50
+
+    print(df)
 
     fig = plt.figure(figsize=(15, 10))
 
-    algs = 'abcde'
-    markers ='.+_x'
-    colors = 'rgbcm'
+    algs = ['bf1', 'bf2', 'bf3']
+    markers = ['.', '+', 'x']
+    colors = ['r', 'g', 'b']
 
 
     plt.subplot(221)
@@ -32,7 +34,7 @@ def visualize_scatter():
     plt.subplot(223)
     plt.title('Ordered-jittered scatter plot')
     step = 2
-    devns = ns + np.array(list(range(0, step * rep, step)) * 5)
+    devns = ns + np.array(list(range(0, step * rep, step)) * 6)
     for a, m, c in zip(algs, markers, colors):
         # Series.sort_index(kind='mergesort') -- unexpected keyword argument???
         s = df.sort_values(a).sort_index(kind='mergesort')

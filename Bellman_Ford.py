@@ -76,6 +76,9 @@ def bellman_ford3(graph, start):
     order[index] = order[0]
     order[0] = temp
 
+    r_order = list(order)
+    r_order.reverse()
+
     graph_plus = dict()
     graph_minus = dict()
 
@@ -98,7 +101,7 @@ def bellman_ford3(graph, start):
 
     while c:
         changed = set()
-        for v in graph_plus:
+        for v in order:
             if v in c or v in changed:
                 for n in graph_plus[v]:
                     if distance[n] == 'inf' or distance[n] > distance[v] + graph_plus[v][n]:
@@ -106,7 +109,7 @@ def bellman_ford3(graph, start):
                         parent[n] = v
                         changed.add(n)
 
-        for v in graph_minus:
+        for v in r_order:
             if v in c or v in changed:
                 for n in graph_minus[v]:
                     if distance[n] == 'inf' or distance[n] > distance[v] + graph_minus[v][n]:
