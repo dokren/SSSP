@@ -38,11 +38,11 @@ def gen_net_graph(n, m, w_range):
 
 def gen_path_graph(n, w_range):
     d = dict()
-    for i in range(n):
-        t = dict()
-        for j in range(n):
-            t[j] = 1
-        d[i] = t
+    d[0] = dict()
+    for i in range(n - 1):
+        d[i][i+1] = random.randrange(1, w_range)
+        d[i+1] = dict()
+        d[i+1][i] = random.randrange(1, w_range)
     return d
 
 

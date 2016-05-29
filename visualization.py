@@ -4,7 +4,7 @@ import matplotlib.pyplot as plt
 
 
 def visualize_scatter():
-    df = pd.read_csv('test_results/bfs_dfs_bf2_dfh_tree_g_100,100,2001.txt', sep=' ', names=list(['n', 'dfs', 'bfs', 'bf2', 'd-fheap', 'blank']), index_col=0, header=None)
+    df = pd.read_csv('test_results/bf1_bf2_random_g_100,100,1001.txt', sep=' ', names=list(['n', 'bf1', 'bf2', 'blank']), index_col=0, header=None)
     ns = df.index.values
     rep = 50
 
@@ -16,13 +16,13 @@ def visualize_scatter():
     # markers = ['.', '+', 'x']
     # colors = ['r', 'g', 'b']
 
-    algs = ['dfs', 'bfs', 'bf2', 'd-fheap']
-    markers = ['.', '+', '_', 'x']
-    colors = ['r', 'g', 'b', 'c']
+    algs = ['bf1', 'bf2']
+    markers = ['.', '+']
+    colors = ['r', 'g']
 
 
     # plt.subplot(221)
-    plt.title('DFS, BFS, best Bellman-Ford, best Dijkstra on tree graphs')
+    plt.title('Bellman-Ford implementations 1 and 2')
     plt.xlabel('# nodes')
     plt.ylabel('Time [ms]')
     dev = 0.02 * (max(ns) - min(ns))
