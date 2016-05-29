@@ -10,7 +10,7 @@ import time
 
 def exp_random_graph4(proba, weight_range):
     f = open('test_results/bfs_dfs_bf2_dfh_random_g_400nodes_0.1,0.1,1.txt', 'w+')
-    nodes = 200
+    nodes = 400
     for num in range(1, 11, 1):
         prob = float(num)/10
         for i in range(50):
@@ -53,7 +53,7 @@ def exp_random_graph4(proba, weight_range):
 
 def exp_random_graph3(prob, wr):
     f = open('test_results/bfs_dfs_bf2_dfh_random_g_400nodes_10,100,1011.txt', 'w+')
-    nodes = 200
+    nodes = 400
     for weight_range in range(10, 1011, 100):
         for i in range(50):
             print "Running for " + str(weight_range) + " weight_range"
@@ -322,9 +322,48 @@ def exp_dijkstra2(prob, weight_range):
     f.close()
 
 
-def main():
-    exp_random_graph3(0.1, 100)
+def exp_tree_graph(prob, weight_range):
+    f = open('test_results/bfs_dfs_bf2_dfh_tree_g_100,100,2001.txt', 'w+')
+    for nodes in range(100, 2001, 100):
+        for i in range(50):
+            print "Running for " + str(nodes) + " nodes"
+            line = ""
 
+            graph = gen_tree_graph(nodes, weight_range)
+
+            start = random.choice(graph.keys())
+
+            line += str(nodes) + " "
+
+            start_time = time.time()
+            bfs(graph, start)
+            bfst = (time.time() - start_time)
+
+            line += str(int(round(bfst * 1000))) + " "
+
+            start_time = time.time()
+            dfs(graph, start)
+            dfst = (time.time() - start_time)
+
+            line += str(int(round(dfst * 1000))) + " "
+
+            start_time = time.time()
+            bellman_ford2(graph, 1)
+            bellman_fordt2 = (time.time() - start_time)
+            line += str(int(round(bellman_fordt2 * 1000))) + " "
+
+            start_time = time.time()
+            dijkstra_fh(graph, start)
+            dijkstra_fht = (time.time() - start_time)
+
+            line += str(int(round(dijkstra_fht * 1000))) + " "
+
+            f.write("%s\n" % line)
+
+    f.close()
+
+
+def main():
     print "run something"
 
 
