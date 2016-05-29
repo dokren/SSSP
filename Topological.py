@@ -5,7 +5,7 @@ GRAY, BLACK = 0, 1
 
 
 # Topological algorithm
-def topological(graph, start):
+def topological1(graph, start):
 
     order = collections.deque()
     enter = set(graph)
