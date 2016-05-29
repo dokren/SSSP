@@ -4,7 +4,7 @@ import matplotlib.pyplot as plt
 
 
 def visualize_scatter():
-    df = pd.read_csv('test_results/bf1_bf2_random_g_100,100,1001.txt', sep=' ', names=list(['n', 'bf1', 'bf2', 'blank']), index_col=0, header=None)
+    df = pd.read_csv('test_results/bf2_dfh_random_g_100,100,1401.txt', sep=' ', names=list(['n', 'bf2', 'd-fheap', 'blank']), index_col=0, header=None)
     ns = df.index.values
     rep = 50
 
@@ -12,17 +12,16 @@ def visualize_scatter():
 
     fig = plt.figure(figsize=(15, 10))
 
-    # algs = ['bf1', 'bf2', 'bf3']
-    # markers = ['.', '+', 'x']
-    # colors = ['r', 'g', 'b']
+    # algs = ['dfs', 'bfs', 'bf2', 'd-fheap']
+    # markers = ['.', '+', '_', 'x']
+    # colors = ['r', 'g', 'b', 'c']
 
-    algs = ['bf1', 'bf2']
+    algs = ['bf2', 'd-fheap']
     markers = ['.', '+']
     colors = ['r', 'g']
 
-
     # plt.subplot(221)
-    plt.title('Dijkstra implementations')
+    plt.title('best Bellman-Ford, best Dijkstra')
     plt.xlabel('# nodes')
     plt.ylabel('Time [ms]')
     dev = 0.02 * (max(ns) - min(ns))

@@ -94,8 +94,8 @@ def exp_random_graph3(prob, wr):
 
 
 def exp_random_graph2(prob, weight_range):
-    f = open('test_results/bf2_dfh_random_g_100,100,1001.txt', 'w+')
-    for nodes in range(100, 1001, 100):
+    f = open('test_results/bf2_dfh_random_g_100,100,1401.txt', 'w+')
+    for nodes in range(100, 1401, 100):
         for i in range(50):
             print "Running for " + str(nodes) + " nodes"
             line = ""
@@ -323,7 +323,7 @@ def exp_dijkstra2(prob, weight_range):
 
 
 def main():
-    exp_random_graph1(0.1, 100)
+    exp_random_graph3(0.1, 100)
 
     print "run something"
 
