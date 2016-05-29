@@ -4,11 +4,10 @@ import matplotlib.pyplot as plt
 
 
 def visualize_scatter():
-    df = pd.read_csv('test_results/bf1_bf2_random_g_100,100,1001.txt', sep=' ', names=list(['n', 'bf1', 'bf2', 'blank']), index_col=0, header=None)
+    df = pd.read_csv('test_results/bfs_bf2_d-fheap_t2_random_dag_100,200,2001.txt', sep=' ', names=list(['n', 'bfs', 'bf2', 'd-fheap', 't2', 'blank']), index_col=0, header=None)
     ns = df.index.values
     rep = 50
 
-    print(df)
 
     fig = plt.figure(figsize=(15, 10))
 
@@ -16,13 +15,13 @@ def visualize_scatter():
     # markers = ['.', '+', 'x']
     # colors = ['r', 'g', 'b']
 
-    algs = ['bf1', 'bf2']
-    markers = ['.', '+']
-    colors = ['r', 'g']
+    algs = ['bfs', 'bf2', 'd-fheap', 't2']
+    markers = ['.', '+', 'x', '_']
+    colors = ['r', 'g', 'b', 'c']
 
 
     # plt.subplot(221)
-    plt.title('Bellman-Ford implementations 1 and 2')
+    plt.title('Topological search implementation 2 with other algorithms')
     plt.xlabel('# nodes')
     plt.ylabel('Time [ms]')
     dev = 0.02 * (max(ns) - min(ns))
@@ -58,47 +57,45 @@ def visualize_scatter():
 
 def visualize_box():
 
-    df = pd.read_csv('test_results/random_g.txt', sep=' ', names=list('nabcde'), index_col=0, header=None)
+    df = pd.read_csv('test_results/bfs_bf2_d-fheap_t2_random_dag_100,200,2001.txt', sep=' ', names=list(['n', 'bfs', 'bf2', 'd-fheap', 't2', 'blank']), index_col=0, header=None)
     ns = df.index.values
 
 
-    algs = 'abcde'
-    markers ='.+_x.'
-    colors = 'rgbcm'
+    algs = ['bfs', 'bf2', 'd-fheap', 't2']
+    markers = ['.', '+', 'x', '_']
+    colors = ['r', 'g', 'b', 'c']
 
+    fig = plt.figure(figsize=(15, 10))
 
-    fig = plt.figure(figsize=(14, 8))
+    plt.title('Topological search implementation 2 with other algorithms')
+    plt.xlabel('# nodes')
+    plt.ylabel('Time [ms]')
 
     d = df.groupby(by=df.index.values).median()
     dmin = df.groupby(by=df.index.values).min()
     dmax = df.groupby(by=df.index.values).max()
     davg = (dmax + dmin) / 2
     derr = dmax - davg
-    plt.subplot(121)
-    plt.title('Error bar')
-    for a, m, c in zip(algs, markers, colors):
-        plt.errorbar(davg.index.values, davg[a], yerr=derr[a].tolist(), color=c, marker=m, label=a)
-        plt.xlim(0, 1100)
-    plt.legend(loc='upper left', shadow=True)
 
-
-    plt.subplot(122)
-    plt.title('Boxplot')
-    start = {'a': 60, 'b':80, 'c':100, 'd':120, 'e':140}
+    start = {'bfs': 40, 'bf2':80, 'd-fheap':120, 't2':160}
     for a, m, c in zip(algs, markers, colors):
         bp = df[a].groupby(by=df[a].index).apply(list).tolist()
-        pos = range(start[a], 541, 100)
-        wds = [15] * 5
+        pos = range(start[a], 2001, 200)
+        wds = [20] * 10
         fp = {'color': c}
 
         plt.boxplot(bp, positions=pos, whis='range', manage_xticks=False, widths=wds, boxprops=fp, medianprops=fp, whiskerprops=fp, capprops=fp)
-        plt.xlim(0, 1100)
-        plt.xticks(np.arange(100,1001,100))
+        plt.xlim(-100, 2050)
+        plt.ylim(-100, 500)
+        plt.xticks(np.arange(100, 2000, 200))
+
+    plt.legend(loc='upper left', shadow=True)
 
     plt.show()
 
 
 def main():
+    visualize_box()
     visualize_scatter()
 
 

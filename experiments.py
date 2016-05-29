@@ -461,9 +461,8 @@ def exp_path_graph(prob, weight_range):
 
 
 def exp_topological(prob, weight_range):
-    f = open('test_results/t1_t2_random_dag_100,100,801.txt', 'w+')
-
-    for nodes in range(100, 801, 100):
+    f = open('test_results/t1_t2_random_dag_100,100,1001.txt', 'w+')
+    for nodes in range(100, 1001, 100):
         for i in range(50):
             print "Running for " + str(nodes) + " nodes"
             line = ""
@@ -491,8 +490,51 @@ def exp_topological(prob, weight_range):
     f.close()
 
 
+def exp_topological_all(prob, weight_range):
+    f = open('test_results/bfs_bf2_d-fheap_t2_random_dag_100,200,2001.txt', 'w+')
+    for nodes in range(100, 2001, 200):
+        for i in range(50):
+            print "Running for " + str(nodes) + " nodes"
+            line = ""
+
+            graph = gen_da_graph(nodes, prob, weight_range)
+
+            start = random.choice(graph.keys())
+
+            line += str(nodes) + " "
+
+            start_time = time.time()
+            bfs(graph, start)
+            t1 = (time.time() - start_time)
+
+            line += str(int(round(t1 * 1000))) + " "
+
+            start_time = time.time()
+            bellman_ford2(graph, start)
+            t1 = (time.time() - start_time)
+
+            line += str(int(round(t1 * 1000))) + " "
+
+            start_time = time.time()
+            dijkstra_fh(graph, start)
+            t1 = (time.time() - start_time)
+
+            line += str(int(round(t1 * 1000))) + " "
+
+            start_time = time.time()
+            topological2(graph, start)
+            t2 = (time.time() - start_time)
+
+            line += str(int(round(t2 * 1000))) + " "
+
+            f.write("%s\n" % line)
+
+    f.close()
+
+
+
 def main():
-    exp_topological(0.1, 100)
+    exp_topological_all(0.1, 100)
     print "run something"
 
 
