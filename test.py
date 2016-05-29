@@ -56,14 +56,15 @@ def main():
     print "Large random graph test passed!"
 
     for i in range(100):
-        graph = gen_da_graph(10, 0.5, 10)
+        graph = gen_da_graph(100, 0.5, 100)
 
         start = random.choice(graph.keys())
 
         resbfs = bfs(graph, start)
         restop = topological(graph, start)
+        restop2 = topological2(graph, start)
 
-        assert resbfs[0] == restop[0]
+        assert resbfs[0] == restop[0] and resbfs[0] == restop[0]
 
     print "Topological test passed!"
 
